@@ -56,6 +56,11 @@ class Product(models.Model):
         blank=True,
         null=True
     )
+    price_discount = models.PositiveIntegerField(
+        verbose_name='Цена товара по акции',
+        blank=True,
+        null=True
+    )
     description = RichTextField(
         verbose_name='Описание товара',
         blank=True,
@@ -86,6 +91,11 @@ class RelatedProduct(models.Model):
     )
     price = models.PositiveIntegerField(
         verbose_name='Цена сопутствующего товара',
+        blank=True,
+        null=True
+    )
+    price_discount = models.PositiveIntegerField(
+        verbose_name='Цена по акции',
         blank=True,
         null=True
     )
