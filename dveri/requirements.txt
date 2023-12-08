@@ -4,8 +4,10 @@ django-ckeditor==6.7.0
 django-filter==23.5
 django-js-asset==2.1.0
 djangorestframework==3.14.0
+gunicorn==21.2.0
 importlib-metadata==7.0.0
 Markdown==3.5.1
+packaging==23.2
 Pillow==10.1.0
 python-dotenv==1.0.0
 pytz==2023.3.post1
