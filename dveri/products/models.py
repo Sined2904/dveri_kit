@@ -3,7 +3,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 
-class Size(models.Model):
+class SizeDoor(models.Model):
     """Модель размеров двери."""
 
     size = models.CharField(max_length=256, verbose_name='Размер двери')
@@ -17,40 +17,52 @@ class Size(models.Model):
         return self.size
 
 
-class Door(models.Model):
-    """Модель двери."""
+class Product(models.Model):
+    """Модель товара."""
 
+    TYPE_PRODUCTS = (
+        ('entrance_door', 'Входная дверь'),
+        ('interior_door', 'Межкомнатная дверь'),
+        ('window', 'Окно'),
+        ('roller_shutters', 'Рольставни'),
+    )
     CATEGORY = (
-        ('entrance', 'Входные'),
+        ('None', '  '),
         ('royal', 'Царговые'),
         ('pvc', 'ПВХ'),
         ('veneer', 'Шпон'),
         ('laminate', 'Ламинат'),
         ('solid', 'Массив натуральный'),
     )
+    type = models.CharField(
+        max_length=50,
+        default=None,
+        choices=TYPE_PRODUCTS,
+        verbose_name='Выберите тип товара'
+    )
     category = models.CharField(
         max_length=50,
         default=None,
         choices=CATEGORY,
-        verbose_name='Выберите тип двери'
+        verbose_name='Выберите тип двери (для межкомнатных дверей)'
     )
     name = models.CharField(
         max_length=250,
         null=False,
-        verbose_name='Название двери'
+        verbose_name='Название товара'
     )
     price = models.PositiveIntegerField(
-        verbose_name='Цена двери',
+        verbose_name='Цена товара',
         blank=True,
         null=True
     )
     description = RichTextField(
-        verbose_name='Описание двери',
+        verbose_name='Описание товара',
         blank=True,
         null=True
     )
     size = models.ManyToManyField(
-        Size,
+        SizeDoor,
         related_name='door',
         verbose_name='Размеры двери',
         blank=True,
@@ -58,29 +70,40 @@ class Door(models.Model):
 
     class Meta:
         ordering = ('name', )
-        verbose_name = "Дверь"
-        verbose_name_plural = "Двери"
+        verbose_name = "Товар"
+        verbose_name_plural = "Товары"
 
     def __str__(self):
         return self.name
 
 
-class DoorAlbum(models.Model):
-    """Модель альбома изображений для двери."""
+class RelatedProduct(models.Model):
+    """Модель сопутствующих товаров."""
 
     name = models.CharField(
-        max_length=250,
-        null=False,
-        verbose_name='Название фото'
+        max_length=256,
+        verbose_name='Название сопутствующего товара'
+    )
+    price = models.PositiveIntegerField(
+        verbose_name='Цена сопутствующего товара',
+        blank=True,
+        null=True
     )
     image = models.ImageField(
-        upload_to="doors/",
-        verbose_name='Фото',
+        upload_to="related_product/",
+        verbose_name='Фото сопутствующего товара',
+        blank=True,
+        null=True
     )
-    door = models.ForeignKey(
-        Door,
+    description = RichTextField(
+        verbose_name='Описание сопутствующего товара',
+        blank=True,
+        null=True
+    )
+    product = models.ForeignKey(
+        Product,
         on_delete=models.CASCADE,
-        related_name='album_door',
+        related_name='related_products',
         verbose_name='Дверь',
         blank=True,
         null=True
@@ -88,15 +111,45 @@ class DoorAlbum(models.Model):
 
     class Meta:
         ordering = ('name', )
-        verbose_name = "Фотографии двери"
-        verbose_name_plural = "Фотографии двери"
+        verbose_name = "Сопутствующий товар"
+        verbose_name_plural = "Сопутствующие товары"
 
     def __str__(self):
         return self.name
 
 
-class DoorAlbumColor(models.Model):
-    """Модель альбома изображений для расцветок двери."""
+class ProductAlbum(models.Model):
+    """Модель альбома изображений для товаров."""
+
+    name = models.CharField(
+        max_length=250,
+        null=False,
+        verbose_name='Название фото'
+    )
+    image = models.ImageField(
+        upload_to="product/",
+        verbose_name='Фото',
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='album_product',
+        verbose_name='Дверь',
+        blank=True,
+        null=True
+    )
+
+    class Meta:
+        ordering = ('name', )
+        verbose_name = "Фотографии товара"
+        verbose_name_plural = "Фотографии товаров"
+
+    def __str__(self):
+        return self.name
+
+
+class ProductAlbumColor(models.Model):
+    """Модель альбома изображений для расцветок товара."""
 
     name = models.CharField(
         max_length=250,
@@ -104,11 +157,11 @@ class DoorAlbumColor(models.Model):
         verbose_name='Название цвета'
     )
     image = models.ImageField(
-        upload_to="doors_color/",
+        upload_to="produst_color/",
         verbose_name='Фото',
     )
-    door = models.ForeignKey(
-        Door,
+    product = models.ForeignKey(
+        Product,
         on_delete=models.CASCADE,
         related_name='album_color',
         verbose_name='Дверь',
@@ -118,8 +171,8 @@ class DoorAlbumColor(models.Model):
 
     class Meta:
         ordering = ('name', )
-        verbose_name = "Фотографии цветов двери"
-        verbose_name_plural = "Фотографии цветов двери"
+        verbose_name = "Фотографии расцветок товара"
+        verbose_name_plural = "Фотографии расцветок товаров"
 
     def __str__(self):
         return self.name

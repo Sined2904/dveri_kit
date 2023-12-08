@@ -1,30 +1,34 @@
 from django.contrib import admin
 
-from .models import Size, Door, DoorAlbum, DoorAlbumColor
+from .models import (SizeDoor, Product, ProductAlbum,
+                     ProductAlbumColor, RelatedProduct)
 
 
-class DoorAlbumAdmin(admin.TabularInline):
-    model = DoorAlbum
+class ProductAlbumAdmin(admin.TabularInline):
+    model = ProductAlbum
 
 
-class DoorAlbumColorAdmin(admin.TabularInline):
-    model = DoorAlbumColor
+class ProductAlbumColorAdmin(admin.TabularInline):
+    model = ProductAlbumColor
 
 
-class DoorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'description')
+class RelatedProductsAdmin(admin.TabularInline):
+    model = RelatedProduct
+
+
+class ProductAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
     search_fields = ('name', )
     ordering = ['name', ]
-    inlines = [DoorAlbumAdmin, DoorAlbumColorAdmin]
+    inlines = [ProductAlbumAdmin, ProductAlbumColorAdmin, RelatedProductsAdmin]
 
 
-class SizeAdmin(admin.ModelAdmin):
+class SizeDoorAdmin(admin.ModelAdmin):
     list_display = ('size',)
     empty_value_display = '-пусто-'
     search_fields = ('size', )
     ordering = ['size', ]
 
 
-admin.site.register(Door, DoorAdmin)
-admin.site.register(Size, SizeAdmin)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(SizeDoor, SizeDoorAdmin)
