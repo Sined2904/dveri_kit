@@ -9,6 +9,8 @@ importlib-metadata==7.0.0
 Markdown==3.5.1
 packaging==23.2
 Pillow==10.1.0
+psycopg==3.1.14
+psycopg2==2.9.9
 python-dotenv==1.0.0
 pytz==2023.3.post1
 sqlparse==0.4.4
