@@ -92,6 +92,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 '''
 class RelatedProduct(models.Model):
     """Модель сопутствующих товаров."""
@@ -138,6 +139,7 @@ class RelatedProduct(models.Model):
     def __str__(self):
         return self.name
 '''
+
 
 class ProductAlbum(models.Model):
     """Модель альбома изображений для товаров."""

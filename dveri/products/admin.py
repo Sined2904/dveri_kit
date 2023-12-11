@@ -11,10 +11,12 @@ class ProductAlbumAdmin(admin.TabularInline):
 class ProductAlbumColorAdmin(admin.TabularInline):
     model = ProductAlbumColor
 
+
 '''
 class RelatedProductsAdmin(admin.TabularInline):
     model = RelatedProduct
 '''
+
 
 class ProductAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
