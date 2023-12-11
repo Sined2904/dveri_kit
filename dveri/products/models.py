@@ -83,6 +83,7 @@ class Product(models.Model):
         null=True
     )
     for_order = models.BooleanField('Под заказ')
+    hit_sale = models.BooleanField('Хит продаж')
 
     class Meta:
         ordering = ('name', )
