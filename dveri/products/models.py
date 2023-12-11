@@ -21,6 +21,8 @@ class Product(models.Model):
     """Модель товара."""
 
     TYPE_PRODUCTS = (
+        ('None', ' '),
+        ('subproduct', 'Сопутствующие товары'),
         ('entrance_door', 'Входная дверь'),
         ('interior_door', 'Межкомнатная дверь'),
         ('window', 'Окно'),
@@ -71,6 +73,13 @@ class Product(models.Model):
         related_name='door',
         verbose_name='Размеры двери',
         blank=True,
+    )
+    subproduct = models.ManyToManyField(
+        'Product',
+        related_name='qwerty',
+        verbose_name='Сопутка',
+        blank=True,
+        null=True
     )
 
     class Meta:
