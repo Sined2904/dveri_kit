@@ -23,6 +23,7 @@ class Product(models.Model):
     TYPE_PRODUCTS = (
         ('None', ' '),
         ('subproduct', 'Сопутствующие товары'),
+        ('accessories', 'Фурнитура'),
         ('entrance_door', 'Входная дверь'),
         ('interior_door', 'Межкомнатная дверь'),
         ('window', 'Окно'),
@@ -81,6 +82,7 @@ class Product(models.Model):
         blank=True,
         null=True
     )
+    for_order = models.BooleanField('Под заказ')
 
     class Meta:
         ordering = ('name', )
@@ -90,7 +92,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
+'''
 class RelatedProduct(models.Model):
     """Модель сопутствующих товаров."""
 
@@ -135,7 +137,7 @@ class RelatedProduct(models.Model):
 
     def __str__(self):
         return self.name
-
+'''
 
 class ProductAlbum(models.Model):
     """Модель альбома изображений для товаров."""

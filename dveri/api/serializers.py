@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from products.models import (Product, RelatedProduct, SizeDoor,
+from products.models import (Product, SizeDoor,
                              ProductAlbum, ProductAlbumColor)
 
 
@@ -24,12 +24,14 @@ class ProductAlbumColorSerializer(serializers.ModelSerializer):
         fields = ['name', 'image']
 
 
+'''
 class RelatedProductSerializer(serializers.ModelSerializer):
     """Сериализатор сопутствующего товара."""
 
     class Meta:
         model = RelatedProduct
         fields = ['id', 'name', 'price', 'image', 'description']
+'''
 
 
 class SizeDoorSerializer(serializers.ModelSerializer):
@@ -44,14 +46,8 @@ class ProductSerializer(serializers.ModelSerializer):
     """Сериализатор товара."""
 
     size = SizeDoorSerializer(many=True)
-    relatedproducts = serializers.SerializerMethodField()
     productalbum = serializers.SerializerMethodField()
     productalbumcolor = serializers.SerializerMethodField()
-
-    def get_relatedproducts(self, obj):
-        relatedproduct = obj.related_products
-        serializer = RelatedProductSerializer(relatedproduct, many=True)
-        return serializer.data
 
     def get_productalbum(self, obj):
         productalbum = obj.album_product
@@ -66,5 +62,5 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['id', 'type', 'category', 'name', 'price', 'price_discount',
-                  'description', 'size', 'relatedproducts', 'productalbum',
+                  'description', 'size', 'productalbum',
                   'productalbumcolor']

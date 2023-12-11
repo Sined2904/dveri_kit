@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (SizeDoor, Product, ProductAlbum,
-                     ProductAlbumColor, RelatedProduct)
+                     ProductAlbumColor)
 
 
 class ProductAlbumAdmin(admin.TabularInline):
@@ -11,16 +11,16 @@ class ProductAlbumAdmin(admin.TabularInline):
 class ProductAlbumColorAdmin(admin.TabularInline):
     model = ProductAlbumColor
 
-
+'''
 class RelatedProductsAdmin(admin.TabularInline):
     model = RelatedProduct
-
+'''
 
 class ProductAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
     search_fields = ('name', )
     ordering = ['name', ]
-    inlines = [ProductAlbumAdmin, ProductAlbumColorAdmin, RelatedProductsAdmin]
+    inlines = [ProductAlbumAdmin, ProductAlbumColorAdmin]
 
 
 class SizeDoorAdmin(admin.ModelAdmin):

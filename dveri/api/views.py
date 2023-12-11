@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from products.models import Product, RelatedProduct
-from .serializers import ProductSerializer, RelatedProductSerializer
+from products.models import Product
+from .serializers import ProductSerializer
 from .permissions import IsAdminOrReadOnly
 
 
@@ -15,6 +15,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     http_method_names = ['get']
 
 
+'''
 class RelatedProductViewSet(viewsets.ModelViewSet):
     """Вьюсет для сопутствующих товаров."""
 
@@ -23,3 +24,4 @@ class RelatedProductViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrReadOnly,)
     pagination_class = None
     http_method_names = ['get']
+'''
