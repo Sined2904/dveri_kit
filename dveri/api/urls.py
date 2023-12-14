@@ -14,6 +14,10 @@ router.register('products', ProductViewSet, basename='products')
 
 urlpatterns = [
     path('v1/', include(router.urls)),
-    path('v1/schema/swagger-ui/', SpectacularSwaggerView.as_view(), name='swagger-ui'),
-    path('v1/schema/redoc/', SpectacularRedocView.as_view(url_name='schema2'), name='redoc'),
+    path('v1/schema/swagger-ui/',
+         SpectacularSwaggerView.as_view(),
+         name='swagger-ui'),
+    path('v1/schema/redoc/',
+         SpectacularRedocView.as_view(url_name='schema2'),
+         name='redoc'),
 ]
