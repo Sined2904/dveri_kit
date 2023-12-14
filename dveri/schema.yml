@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: API сайта Двери Кит
+  version: 1.0.0
+  description: Все доступные эндпоинты проекта
+paths:
+  /api/v1/products/:
+    get:
+      operationId: api_v1_products_list
+      description: Вьюсет для товаров.
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+          description: ''
+  /api/v1/products/{id}/:
+    get:
+      operationId: api_v1_products_retrieve
+      description: Вьюсет для товаров.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Товар.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+components:
+  schemas:
+    CategoryEnum:
+      enum:
+      - None
+      - royal
+      - pvc
+      - veneer
+      - laminate
+      - solid
+      type: string
+      description: "* `None` -   \n* `royal` - Царговые\n* `pvc` - ПВХ\n* `veneer`\
+        \ - Шпон\n* `laminate` - Ламинат\n* `solid` - Массив натуральный"
+    Product:
+      type: object
+      description: Сериализатор товара.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        type:
+          allOf:
+          - $ref: '#/components/schemas/TypeEnum'
+          title: Выберите тип товара
+        category:
+          allOf:
+          - $ref: '#/components/schemas/CategoryEnum'
+          title: Выберите тип двери (для межкомнатных дверей)
+        name:
+          type: string
+          title: Название товара
+          maxLength: 250
+        price:
+          type: integer
+          nullable: true
+          title: Цена товара
+        price_discount:
+          type: integer
+          nullable: true
+          title: Цена товара по акции
+        description:
+          type: string
+          nullable: true
+          title: Описание товара
+        size:
+          type: array
+          items:
+            $ref: '#/components/schemas/SizeDoor'
+        productalbum:
+          type: string
+          readOnly: true
+        productalbumcolor:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - name
+      - productalbum
+      - productalbumcolor
+      - size
+    SizeDoor:
+      type: object
+      description: Сериализатор альбома товара.
+      properties:
+        size:
+          type: string
+          title: Размер двери
+          maxLength: 256
+      required:
+      - size
+    TypeEnum:
+      enum:
+      - None
+      - subproduct
+      - accessories
+      - entrance_door
+      - interior_door
+      - window
+      - roller_shutters
+      type: string
+      description: "* `None` -  \n* `subproduct` - Сопутствующие товары\n* `accessories`\
+        \ - Фурнитура\n* `entrance_door` - Входная дверь\n* `interior_door` - Межкомнатная\
+        \ дверь\n* `window` - Окно\n* `roller_shutters` - Рольставни"
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
