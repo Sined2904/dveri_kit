@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from products.models import Product
-from .serializers import ProductSerializer
+from products.models import Product, Article
+from .serializers import ProductSerializer, ArticleSerializer
 from .permissions import IsAdminOrReadOnly
 
 
@@ -10,6 +10,16 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = (IsAdminOrReadOnly,)
+    pagination_class = None
+    http_method_names = ['get']
+
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    """Вьюсет для товаров."""
+
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
     permission_classes = (IsAdminOrReadOnly,)
     pagination_class = None
     http_method_names = ['get']

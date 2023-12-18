@@ -2,14 +2,14 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from drf_spectacular.views import SpectacularRedocView, SpectacularSwaggerView
 
-from .views import ProductViewSet
+from .views import ProductViewSet, ArticleViewSet
 
 app_name = 'api'
 
 router = DefaultRouter()
 
 router.register('products', ProductViewSet, basename='products')
-# router.register('relatedproducts', RelatedProductViewSet, basename='related')
+router.register('articles', ArticleViewSet, basename='articles')
 
 
 urlpatterns = [

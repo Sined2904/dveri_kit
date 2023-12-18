@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from products.models import (Product, SizeDoor,
+from products.models import (Product, SizeDoor, Article,
                              ProductAlbum, ProductAlbumColor)
 
 
@@ -65,3 +65,11 @@ class ProductSerializer(serializers.ModelSerializer):
                   'price_discount', 'subproduct', 'description', 'size',
                   'for_order', 'hit_sale', 'productalbum',
                   'productalbumcolor']
+
+
+class ArticleSerializer(serializers.ModelSerializer):
+    """Сериализатор статей."""
+
+    class Meta:
+        model = Article
+        fields = ['id', 'title', 'text', 'date']

@@ -95,6 +95,29 @@ class Product(models.Model):
         return self.name
 
 
+class Article(models.Model):
+    """Модель статей."""
+
+    title = models.CharField(
+        max_length=500,
+        verbose_name='Заголовок статьи'
+    )
+    text = RichTextField(
+        verbose_name='Описание товара',
+        blank=True,
+        null=True
+    )
+    date = models.DateTimeField(verbose_name='Дата публикации')
+
+    class Meta:
+        ordering = ('title', )
+        verbose_name = "Статья"
+        verbose_name_plural = "Статьи"
+
+    def __str__(self):
+        return self.title
+
+
 '''
 class RelatedProduct(models.Model):
     """Модель сопутствующих товаров."""

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (SizeDoor, Product, ProductAlbum,
-                     ProductAlbumColor)
+                     ProductAlbumColor, Article)
 
 
 class ProductAlbumAdmin(admin.TabularInline):
@@ -32,5 +32,12 @@ class SizeDoorAdmin(admin.ModelAdmin):
     ordering = ['size', ]
 
 
+class ArticleAdmin(admin.ModelAdmin):
+    empty_value_display = '-пусто-'
+    search_fields = ('title', 'text')
+    ordering = ['title', ]
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(SizeDoor, SizeDoorAdmin)
+admin.site.register(Article, ArticleAdmin)
