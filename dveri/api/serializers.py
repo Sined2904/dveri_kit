@@ -11,7 +11,7 @@ class ProductAlbumSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductAlbum
-        fields = ['image',]
+        fields = ['name', 'image',]
 
 
 class ProductAlbumColorSerializer(serializers.ModelSerializer):
