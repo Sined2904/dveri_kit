@@ -4,7 +4,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 
 from products.models import Product, Article
-from .serializers import ProductSerializer, ArticleSerializer, MinMaxPriceSerializer
+from .serializers import (ProductSerializer, ArticleSerializer,
+                          MinMaxPriceSerializer)
 from .permissions import IsAdminOrReadOnly
 from .filters import ProductFilter
 
@@ -25,7 +26,8 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['GET',])
     def min_max_price(self, request):
-        return Response(MinMaxPriceSerializer(self.queryset).data, status=status.HTTP_200_OK)
+        return Response(MinMaxPriceSerializer(self.queryset).data,
+                        status=status.HTTP_200_OK)
 
 
 class ArticleViewSet(viewsets.ModelViewSet):

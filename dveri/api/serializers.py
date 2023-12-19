@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.db.models import Avg, Max, Min
+from django.db.models import Max, Min
 
 from products.models import (Product, SizeDoor, Article,
                              ProductAlbum, ProductAlbumColor)
