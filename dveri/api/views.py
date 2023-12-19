@@ -33,7 +33,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    """Вьюсет для товаров."""
+    """Вьюсет для статей."""
 
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
