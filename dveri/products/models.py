@@ -54,14 +54,18 @@ class Product(models.Model):
         null=False,
         verbose_name='Название товара'
     )
-    price = models.PositiveIntegerField(
+    price = models.DecimalField(
+        max_digits=9,
+        decimal_places=2,
         verbose_name='Цена товара',
         blank=True,
         null=True
     )
     for_sale = models.BooleanField('Товар по акции')
-    price_discount = models.PositiveIntegerField(
-        verbose_name='Цена товара по акции',
+    old_price = models.DecimalField(
+        max_digits=9,
+        decimal_places=2,
+        verbose_name='Цена товара БЕЗ акции',
         blank=True,
         null=True
     )
