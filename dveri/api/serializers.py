@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.db.models import Avg, Max, Min
 
 from products.models import (Product, SizeDoor, Article,
                              ProductAlbum, ProductAlbumColor)
@@ -73,3 +74,20 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ['id', 'title', 'text', 'date']
+
+
+class MinMaxPriceSerializer(serializers.ModelSerializer):
+    """Сериализатор максимальной и минимальной цены."""
+
+    min_price = serializers.SerializerMethodField()
+    max_price = serializers.SerializerMethodField()
+
+    def get_min_price(self, obj):
+        return Product.objects.all().aggregate(Min('price'))['price__min']
+
+    def get_max_price(self, obj):
+        return Product.objects.all().aggregate(Max('price'))['price__max']
+
+    class Meta:
+        model = Product
+        fields = ['min_price', 'max_price']

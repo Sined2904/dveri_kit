@@ -7,8 +7,8 @@ class ProductFilter(FilterSet):
     """Фильтр для товаров."""
 
     size = filters.ModelMultipleChoiceFilter(
-        field_name='SizeDoor__slug',
-        to_field_name='slug',
+        field_name='SizeDoor__size',
+        to_field_name='size',
         queryset=SizeDoor.objects.all(),
     )
     min_price = NumberFilter(field_name="price", lookup_expr='gte')
