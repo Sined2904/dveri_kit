@@ -2,6 +2,7 @@ from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
+from rest_framework.pagination import LimitOffsetPagination
 
 from products.models import Product, Article
 from .serializers import (ProductSerializer, ArticleSerializer,
@@ -23,6 +24,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     ordering_fields = ('price',)
     search_fields = ('name', 'description')
     filterset_class = ProductFilter
+    pagination_class = LimitOffsetPagination
 
     @action(detail=False, methods=['GET',])
     def min_max_price(self, request):
