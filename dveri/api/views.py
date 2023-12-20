@@ -56,6 +56,7 @@ class RequestForMeasurementViewSet(viewsets.ModelViewSet):
     serializer_class = RequestForMeasurementSerializer
     permission_classes = (AllowAny,)
     pagination_class = None
+    http_method_names = ['post']
 
     def create(self, request, *args, **kwargs):
         message = (f"Фамилия имя: {request.data['name_surname']} \n"
@@ -76,6 +77,7 @@ class RequestForCallbackViewSet(viewsets.ModelViewSet):
     serializer_class = RequestForCallbackSerializer
     permission_classes = (AllowAny,)
     pagination_class = None
+    http_method_names = ['post']
 
     def create(self, request, *args, **kwargs):
         message = (f"Фамилия имя: {request.data['name_surname']}\n"
