@@ -17,10 +17,20 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 LOCAL_DB = bool(os.getenv('LOCAL_DB', default='False') == "True")
 
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "den2904@yandex.ru"
+EMAIL_HOST_PASSWORD = "pvuplkbugfzpoiml"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_METHODS = [
     'GET',
+    'POST',
 ]
 
 INSTALLED_APPS = [

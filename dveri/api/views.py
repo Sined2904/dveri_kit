@@ -3,12 +3,16 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.permissions import AllowAny
+from django.core.mail import send_mail
 
-from products.models import Product, Article
+from products.models import Product, Article, RequestForMeasurement
 from .serializers import (ProductSerializer, ArticleSerializer,
-                          MinMaxPriceSerializer)
+                          MinMaxPriceSerializer,
+                          RequestForMeasurementSerializer)
 from .permissions import IsAdminOrReadOnly
 from .filters import ProductFilter
+from dveri import settings
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -40,6 +44,26 @@ class ArticleViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrReadOnly,)
     pagination_class = None
     http_method_names = ['get']
+
+
+class RequestForMeasurementViewSet(viewsets.ModelViewSet):
+    """Вьюсет для запроса на замер."""
+
+    queryset = RequestForMeasurement.objects.all()
+    serializer_class = RequestForMeasurementSerializer
+    permission_classes = (AllowAny,)
+    pagination_class = None
+
+    def create(self, request, *args, **kwargs):
+        message = (f"Фамилия имя: {request.data['name_surname']} \n"
+                   f"Телефон: {request.data['telefone']}\n"
+                   f"Адрес: {request.data['address']}\n"
+                   f"Что замерять: {request.data['content']}"
+                   )
+        send_mail(f"Новая заявка на замер от {request.data['name_surname']}!",
+                  message, settings.EMAIL_HOST_USER,
+                  ['den2904@yandex.ru'])
+        return super().create(request, *args, **kwargs)
 
 
 '''

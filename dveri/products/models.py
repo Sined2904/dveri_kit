@@ -122,6 +122,42 @@ class Article(models.Model):
         return self.title
 
 
+class RequestForMeasurement(models.Model):
+    """Модель заявки на замер."""
+
+    name_surname = models.CharField(
+        max_length=255,
+        verbose_name='Фамилия Имя',
+        blank=True,
+        null=True
+    )
+    telefone = models.CharField(max_length=12, verbose_name='Телефон')
+    address = models.CharField(
+        max_length=500,
+        verbose_name='Адрес',
+        blank=True,
+        null=True
+    )
+    content = models.TextField(
+        verbose_name='Содержимое письма',
+        blank=True,
+        null=True
+    )
+    time_create = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата создания'
+    )
+
+    class Meta:
+        verbose_name = 'Заявка на замер'
+        verbose_name_plural = 'Заявки на замер'
+        ordering = ['-time_create']
+        db_table = 'app_feedback'
+
+    def __str__(self):
+        return f'Вам письмо от {self.name_surname}'
+
+
 '''
 class RelatedProduct(models.Model):
     """Модель сопутствующих товаров."""

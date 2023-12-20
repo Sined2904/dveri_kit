@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (SizeDoor, Product, ProductAlbum,
-                     ProductAlbumColor, Article)
+                     ProductAlbumColor, Article, RequestForMeasurement)
 
 
 class ProductAlbumAdmin(admin.TabularInline):
@@ -19,6 +19,9 @@ class RelatedProductsAdmin(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
+    list_display = ('type', 'category', 'name',
+                    'price', 'for_sale', 'old_price'
+                    )
     empty_value_display = '-пусто-'
     search_fields = ('name', )
     ordering = ['name', ]
@@ -38,6 +41,16 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = ['title', ]
 
 
+class RequestForMeasurementAdmin(admin.ModelAdmin):
+    list_display = ('name_surname', 'telefone', 'address',
+                    'content', 'time_create'
+                    )
+    empty_value_display = '-пусто-'
+    search_fields = ('name_surname', 'telefone', 'address', 'content')
+    ordering = ['-time_create', ]
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(SizeDoor, SizeDoorAdmin)
 admin.site.register(Article, ArticleAdmin)
+admin.site.register(RequestForMeasurement, RequestForMeasurementAdmin)
