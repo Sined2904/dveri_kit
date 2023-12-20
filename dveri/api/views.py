@@ -10,6 +10,7 @@ from products.models import Product, Article, RequestForMeasurement
 from .serializers import (ProductSerializer, ArticleSerializer,
                           MinMaxPriceSerializer,
                           RequestForMeasurementSerializer)
+
 from .permissions import IsAdminOrReadOnly
 from .filters import ProductFilter
 from dveri import settings
