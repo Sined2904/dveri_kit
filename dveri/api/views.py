@@ -6,10 +6,12 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import AllowAny
 from django.core.mail import send_mail
 
-from products.models import Product, Article, RequestForMeasurement
+from products.models import (Product, Article, RequestForMeasurement,
+                             RequestForCallback)
 from .serializers import (ProductSerializer, ArticleSerializer,
                           MinMaxPriceSerializer,
-                          RequestForMeasurementSerializer)
+                          RequestForMeasurementSerializer,
+                          RequestForCallbackSerializer)
 
 from .permissions import IsAdminOrReadOnly
 from .filters import ProductFilter
@@ -62,6 +64,24 @@ class RequestForMeasurementViewSet(viewsets.ModelViewSet):
                    f"Что замерять: {request.data['content']}"
                    )
         send_mail(f"Новая заявка на замер от {request.data['name_surname']}!",
+                  message, settings.EMAIL_HOST_USER,
+                  ['den2904@yandex.ru'])
+        return super().create(request, *args, **kwargs)
+
+
+class RequestForCallbackViewSet(viewsets.ModelViewSet):
+    """Вьюсет для заявки на обратный звонок."""
+
+    queryset = RequestForCallback.objects.all()
+    serializer_class = RequestForCallbackSerializer
+    permission_classes = (AllowAny,)
+    pagination_class = None
+
+    def create(self, request, *args, **kwargs):
+        message = (f"Фамилия имя: {request.data['name_surname']}\n"
+                   f"Телефон: {request.data['telefone']}\n"
+                   )
+        send_mail(f"Запрос звонка от {request.data['name_surname']}!",
                   message, settings.EMAIL_HOST_USER,
                   ['den2904@yandex.ru'])
         return super().create(request, *args, **kwargs)

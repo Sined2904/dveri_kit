@@ -2,7 +2,8 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from drf_spectacular.views import SpectacularRedocView, SpectacularSwaggerView
 
-from .views import ProductViewSet, ArticleViewSet, RequestForMeasurementViewSet
+from .views import (ProductViewSet, ArticleViewSet,
+                    RequestForMeasurementViewSet, RequestForCallbackViewSet)
 
 app_name = 'api'
 
@@ -13,6 +14,10 @@ router.register('articles', ArticleViewSet, basename='articles')
 router.register('request_for_measurement',
                 RequestForMeasurementViewSet,
                 basename='request_for_measurement'
+                )
+router.register('request_for_callback',
+                RequestForCallbackViewSet,
+                basename='request_for_callback'
                 )
 
 

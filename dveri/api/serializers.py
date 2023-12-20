@@ -2,7 +2,8 @@ from rest_framework import serializers
 from django.db.models import Max, Min
 
 from products.models import (Product, SizeDoor, Article, RequestForMeasurement,
-                             ProductAlbum, ProductAlbumColor)
+                             ProductAlbum, ProductAlbumColor,
+                             RequestForCallback)
 
 
 class ProductAlbumSerializer(serializers.ModelSerializer):
@@ -99,3 +100,11 @@ class RequestForMeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = RequestForMeasurement
         fields = ['name_surname', 'telefone', 'address', 'content']
+
+
+class RequestForCallbackSerializer(serializers.ModelSerializer):
+    """Сериализатор запроса на замер."""
+
+    class Meta:
+        model = RequestForCallback
+        fields = ['name_surname', 'telefone']

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import (SizeDoor, Product, ProductAlbum,
+from .models import (SizeDoor, Product, ProductAlbum, RequestForCallback,
                      ProductAlbumColor, Article, RequestForMeasurement)
 
 
@@ -50,7 +50,15 @@ class RequestForMeasurementAdmin(admin.ModelAdmin):
     ordering = ['-time_create', ]
 
 
+class RequestForCallbackAdmin(admin.ModelAdmin):
+    list_display = ('name_surname', 'telefone', 'time_create')
+    empty_value_display = '-пусто-'
+    search_fields = ('name_surname', 'telefone')
+    ordering = ['-time_create', ]
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(SizeDoor, SizeDoorAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(RequestForMeasurement, RequestForMeasurementAdmin)
+admin.site.register(RequestForCallback, RequestForCallbackAdmin)

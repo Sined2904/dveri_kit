@@ -158,6 +158,30 @@ class RequestForMeasurement(models.Model):
         return f'Вам письмо от {self.name_surname}'
 
 
+class RequestForCallback(models.Model):
+    """Модель заявки на обратный звонок."""
+
+    name_surname = models.CharField(
+        max_length=255,
+        verbose_name='Фамилия Имя',
+        blank=True,
+        null=True
+    )
+    telefone = models.CharField(max_length=12, verbose_name='Телефон')
+    time_create = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата создания'
+    )
+
+    class Meta:
+        verbose_name = 'Заявка на обратный звонок'
+        verbose_name_plural = 'Заявки на обратный звонок'
+        ordering = ['-time_create']
+
+    def __str__(self):
+        return f'{self.name_surname} прости вас перезвонить'
+
+
 '''
 class RelatedProduct(models.Model):
     """Модель сопутствующих товаров."""
