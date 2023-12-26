@@ -111,6 +111,10 @@ class Article(models.Model):
         blank=True,
         null=True
     )
+    image = models.ImageField(upload_to='articles/',
+                              verbose_name='Фото',
+                              null=True,
+                              blank=True)
     date = models.DateTimeField(verbose_name='Дата публикации')
 
     class Meta:
