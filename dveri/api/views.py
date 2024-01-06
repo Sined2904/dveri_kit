@@ -67,6 +67,9 @@ class RequestForMeasurementViewSet(viewsets.ModelViewSet):
         send_mail(f"Новая заявка на замер от {request.data['name_surname']}!",
                   message, settings.EMAIL_HOST_USER,
                   ['den2904@yandex.ru'])
+        send_mail(f"Новая заявка на замер от {request.data['name_surname']}!",
+                  message, settings.EMAIL_HOST_USER,
+                  ['dverikitnchk@mail.ru'])
         return super().create(request, *args, **kwargs)
 
 
@@ -86,6 +89,9 @@ class RequestForCallbackViewSet(viewsets.ModelViewSet):
         send_mail(f"Запрос звонка от {request.data['name_surname']}!",
                   message, settings.EMAIL_HOST_USER,
                   ['den2904@yandex.ru'])
+        send_mail(f"Запрос звонка от {request.data['name_surname']}!",
+                  message, settings.EMAIL_HOST_USER,
+                  ['dverikitnchk@mail.ru'])
         return super().create(request, *args, **kwargs)
 
 
