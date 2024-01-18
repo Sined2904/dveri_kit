@@ -48,7 +48,7 @@ class SubproductSerializer(serializers.ModelSerializer):
     """Сериализатор сопутствующих товаров."""
 
     productalbum = serializers.SerializerMethodField()
-    
+
     def get_productalbum(self, obj):
         productalbum = obj.album_product
         serializer = ProductAlbumSerializer(productalbum, many=True)
@@ -57,7 +57,7 @@ class SubproductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['id', 'type', 'category', 'name', 'price', 'for_sale',
-                  'old_price', 'size', 'for_order', 'hit_sale', 
+                  'old_price', 'size', 'for_order', 'hit_sale',
                   'productalbum']
 
 
