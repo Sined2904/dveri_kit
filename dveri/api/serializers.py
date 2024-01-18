@@ -44,9 +44,27 @@ class SizeDoorSerializer(serializers.ModelSerializer):
         fields = ['size',]
 
 
+class SubproductSerializer(serializers.ModelSerializer):
+    """Сериализатор сопутствующих товаров."""
+
+    productalbum = serializers.SerializerMethodField()
+    
+    def get_productalbum(self, obj):
+        productalbum = obj.album_product
+        serializer = ProductAlbumSerializer(productalbum, many=True)
+        return serializer.data
+
+    class Meta:
+        model = Product
+        fields = ['id', 'type', 'category', 'name', 'price', 'for_sale',
+                  'old_price', 'size', 'for_order', 'hit_sale', 
+                  'productalbum']
+
+
 class ProductSerializer(serializers.ModelSerializer):
     """Сериализатор товара."""
 
+    subproduct = SubproductSerializer(many=True)
     size = SizeDoorSerializer(many=True)
     productalbum = serializers.SerializerMethodField()
     productalbumcolor = serializers.SerializerMethodField()
