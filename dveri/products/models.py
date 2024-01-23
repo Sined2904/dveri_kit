@@ -77,6 +77,11 @@ class Product(models.Model):
         verbose_name='Размеры двери',
         blank=True,
     )
+    color_product = RichTextField(
+        verbose_name='Варианты цветов',
+        blank=True,
+        null=True
+    )
     subproduct = models.ManyToManyField(
         'Product',
         related_name='qwerty',
