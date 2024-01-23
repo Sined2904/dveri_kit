@@ -21,7 +21,7 @@ class RelatedProductsAdmin(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('type', 'category', 'name',
                     'price', 'for_sale', 'old_price',
-                    'for_order', 'hit_sale', 'color_product'
+                    'for_order', 'hit_sale',
                     )
     empty_value_display = '-пусто-'
     search_fields = ('name',)
