@@ -28,6 +28,7 @@ class Product(models.Model):
         ('interior_door', 'Межкомнатная дверь'),
         ('window', 'Окно'),
         ('roller_shutters', 'Рольставни'),
+        ('mouldings', 'Погонаж'),
     )
     CATEGORY = (
         ('None', '  '),
