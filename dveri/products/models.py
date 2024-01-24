@@ -262,7 +262,7 @@ class ProductAlbum(models.Model):
     )
 
     class Meta:
-        ordering = ('-time_create', 'name')
+        ordering = ('time_create', 'name')
         verbose_name = "Фотографии товара"
         verbose_name_plural = "Фотографии товаров"
 
@@ -296,7 +296,7 @@ class ProductAlbumColor(models.Model):
     )
 
     class Meta:
-        ordering = ('-time_create', 'name')
+        ordering = ('time_create', 'name')
         verbose_name = "Фотографии расцветок товара"
         verbose_name_plural = "Фотографии расцветок товаров"
 
