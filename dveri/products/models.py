@@ -256,9 +256,13 @@ class ProductAlbum(models.Model):
         blank=True,
         null=True
     )
+    time_create = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата создания'
+    )
 
     class Meta:
-        ordering = ('name', )
+        ordering = ('-time_create', 'name')
         verbose_name = "Фотографии товара"
         verbose_name_plural = "Фотографии товаров"
 
@@ -286,9 +290,13 @@ class ProductAlbumColor(models.Model):
         blank=True,
         null=True
     )
+    time_create = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата создания'
+    )
 
     class Meta:
-        ordering = ('name', )
+        ordering = ('-time_create', 'name')
         verbose_name = "Фотографии расцветок товара"
         verbose_name_plural = "Фотографии расцветок товаров"
 
