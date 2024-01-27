@@ -56,8 +56,7 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['id', 'type', 'category', 'name', 'price', 'for_sale',
                   'old_price', 'subproduct', 'description', 'size',
-                  'for_order', 'hit_sale', 'color_product', 'productalbum',
-                ]
+                  'for_order', 'hit_sale', 'color_product', 'productalbum']
 
 
 class ArticleSerializer(serializers.ModelSerializer):
