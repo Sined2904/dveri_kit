@@ -1,21 +1,11 @@
 from django.contrib import admin
 
 from .models import (SizeDoor, Product, ProductAlbum, RequestForCallback,
-                     ProductAlbumColor, Article, RequestForMeasurement)
+                     Article, RequestForMeasurement)
 
 
 class ProductAlbumAdmin(admin.TabularInline):
     model = ProductAlbum
-
-
-class ProductAlbumColorAdmin(admin.TabularInline):
-    model = ProductAlbumColor
-
-
-'''
-class RelatedProductsAdmin(admin.TabularInline):
-    model = RelatedProduct
-'''
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -26,7 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
     search_fields = ('name',)
     ordering = ['name', ]
-    inlines = [ProductAlbumAdmin, ProductAlbumColorAdmin]
+    inlines = [ProductAlbumAdmin,]
 
 
 class SizeDoorAdmin(admin.ModelAdmin):

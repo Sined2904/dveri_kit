@@ -2,8 +2,7 @@ from rest_framework import serializers
 from django.db.models import Max, Min
 
 from products.models import (Product, SizeDoor, Article, RequestForMeasurement,
-                             ProductAlbum, ProductAlbumColor,
-                             RequestForCallback)
+                             ProductAlbum, RequestForCallback)
 
 
 class ProductAlbumSerializer(serializers.ModelSerializer):
@@ -14,26 +13,6 @@ class ProductAlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductAlbum
         fields = ['name', 'image',]
-
-
-class ProductAlbumColorSerializer(serializers.ModelSerializer):
-    """Сериализатор альбома цветов товара."""
-
-    image = serializers.ImageField()
-
-    class Meta:
-        model = ProductAlbumColor
-        fields = ['name', 'image']
-
-
-'''
-class RelatedProductSerializer(serializers.ModelSerializer):
-    """Сериализатор сопутствующего товара."""
-
-    class Meta:
-        model = RelatedProduct
-        fields = ['id', 'name', 'price', 'image', 'description']
-'''
 
 
 class SizeDoorSerializer(serializers.ModelSerializer):
@@ -67,16 +46,10 @@ class ProductSerializer(serializers.ModelSerializer):
     subproduct = SubproductSerializer(many=True)
     size = SizeDoorSerializer(many=True)
     productalbum = serializers.SerializerMethodField()
-    productalbumcolor = serializers.SerializerMethodField()
 
     def get_productalbum(self, obj):
         productalbum = obj.album_product
         serializer = ProductAlbumSerializer(productalbum, many=True)
-        return serializer.data
-
-    def get_productalbumcolor(self, obj):
-        productalbumcolor = obj.album_color
-        serializer = ProductAlbumColorSerializer(productalbumcolor, many=True)
         return serializer.data
 
     class Meta:
@@ -84,11 +57,13 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ['id', 'type', 'category', 'name', 'price', 'for_sale',
                   'old_price', 'subproduct', 'description', 'size',
                   'for_order', 'hit_sale', 'color_product', 'productalbum',
-                  'productalbumcolor']
+                ]
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     """Сериализатор статей."""
+
+    image = serializers.ImageField()
 
     class Meta:
         model = Article

@@ -120,7 +120,7 @@ class Article(models.Model):
     date = models.DateTimeField(verbose_name='Дата публикации')
 
     class Meta:
-        ordering = ('title', )
+        ordering = ['-date']
         verbose_name = "Статья"
         verbose_name_plural = "Статьи"
 
@@ -188,54 +188,6 @@ class RequestForCallback(models.Model):
         return f'{self.name_surname} прости вас перезвонить'
 
 
-'''
-class RelatedProduct(models.Model):
-    """Модель сопутствующих товаров."""
-
-    name = models.CharField(
-        max_length=256,
-        verbose_name='Название сопутствующего товара'
-    )
-    price = models.PositiveIntegerField(
-        verbose_name='Цена сопутствующего товара',
-        blank=True,
-        null=True
-    )
-    price_discount = models.PositiveIntegerField(
-        verbose_name='Цена по акции',
-        blank=True,
-        null=True
-    )
-    image = models.ImageField(
-        upload_to="related_product/",
-        verbose_name='Фото сопутствующего товара',
-        blank=True,
-        null=True
-    )
-    description = RichTextField(
-        verbose_name='Описание сопутствующего товара',
-        blank=True,
-        null=True
-    )
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name='related_products',
-        verbose_name='Дверь',
-        blank=True,
-        null=True
-    )
-
-    class Meta:
-        ordering = ('name', )
-        verbose_name = "Сопутствующий товар"
-        verbose_name_plural = "Сопутствующие товары"
-
-    def __str__(self):
-        return self.name
-'''
-
-
 class ProductAlbum(models.Model):
     """Модель альбома изображений для товаров."""
 
@@ -270,6 +222,7 @@ class ProductAlbum(models.Model):
         return self.name
 
 
+'''
 class ProductAlbumColor(models.Model):
     """Модель альбома изображений для расцветок товара."""
 
@@ -302,3 +255,4 @@ class ProductAlbumColor(models.Model):
 
     def __str__(self):
         return self.name
+'''
