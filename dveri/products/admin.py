@@ -9,7 +9,7 @@ class ProductAlbumAdmin(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('type', 'category', 'name',
+    list_display = ('id', 'type', 'category', 'name',
                     'price', 'for_sale', 'old_price',
                     'for_order', 'hit_sale',
                     )
