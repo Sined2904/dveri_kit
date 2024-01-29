@@ -7,7 +7,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#SECRET_KEY = 'django-insecure-kh(0$!l2#ui%6z@+cbcoop3n^ro9_p7)j25soj*9vgl97_*=2q'
+# SECRET_KEY = 'django-insecure-kh(0$!l2#ui%6z@+cbcoop3n^ro9_p7)j25soj*9vgl97_*=2q'
 
 SECRET_KEY = os.getenv("SECRET_KEY", '1234')
 
@@ -26,8 +26,6 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
 
 CSRF_TRUSTED_ORIGINS = ["https://www.xn----ctbffpbn9bw.xn--p1ai"]
 
