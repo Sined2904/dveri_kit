@@ -62,11 +62,9 @@ class ProductSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     """Сериализатор статей."""
 
-    image = serializers.ImageField()
-
     class Meta:
         model = Article
-        fields = ['id', 'title', 'text', 'date', 'image']
+        fields = ['id', 'title', 'text', 'date', 'image',]
 
 
 class MinMaxPriceSerializer(serializers.ModelSerializer):

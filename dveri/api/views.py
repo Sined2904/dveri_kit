@@ -18,6 +18,10 @@ from .filters import ProductFilter
 from dveri import settings
 
 
+EMAIL_TO = 'den2904@yandex.ru'
+EMAIL_TO_2 = 'dverikitnchk@mail.ru'
+
+
 class ProductViewSet(viewsets.ModelViewSet):
     """Вьюсет для товаров."""
 
@@ -66,10 +70,10 @@ class RequestForMeasurementViewSet(viewsets.ModelViewSet):
                    )
         send_mail(f"Новая заявка на замер от {request.data['name_surname']}!",
                   message, settings.EMAIL_HOST_USER,
-                  ['den2904@yandex.ru'])
+                  [EMAIL_TO])
         send_mail(f"Новая заявка на замер от {request.data['name_surname']}!",
                   message, settings.EMAIL_HOST_USER,
-                  ['dverikitnchk@mail.ru'])
+                  [EMAIL_TO_2])
         return super().create(request, *args, **kwargs)
 
 
