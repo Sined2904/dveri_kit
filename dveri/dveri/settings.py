@@ -24,7 +24,7 @@ EMAIL_USE_SSL = False
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-CSRF_TRUSTED_ORIGINS = ["www.xn----ctbffpbn9bw.xn--p1ai"]
+CSRF_TRUSTED_ORIGINS = ['https://www.xn----ctbffpbn9bw.xn--p1ai']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
