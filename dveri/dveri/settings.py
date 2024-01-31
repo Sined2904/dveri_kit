@@ -7,8 +7,6 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY = 'django-insecure-kh(0$!l2#ui%6z@+cbcoop3n^ro9_p7)j25soj*9vgl97_*=2q'
-
 SECRET_KEY = os.getenv("SECRET_KEY", '1234')
 
 DEBUG = bool(os.getenv('DEBUG', default='False') == "True")
@@ -16,7 +14,6 @@ DEBUG = bool(os.getenv('DEBUG', default='False') == "True")
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 LOCAL_DB = bool(os.getenv('LOCAL_DB', default='False') == "True")
-
 
 EMAIL_HOST = os.getenv("EMAIL_HOST", '1234')
 EMAIL_PORT = os.getenv("EMAIL_PORT", '1234')
@@ -76,12 +73,10 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Все доступные эндпоинты проекта',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    'SWAGGER_UI_DIST': 'SIDECAR',  # shorthand to use the sidecar instead
+    'SWAGGER_UI_DIST': 'SIDECAR',
     'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
     'REDOC_DIST': 'SIDECAR',
-    # OTHER SETTINGS
 }
-
 
 ROOT_URLCONF = 'dveri.urls'
 
@@ -101,11 +96,9 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'dveri.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if LOCAL_DB:
     DATABASES = {
@@ -130,9 +123,6 @@ else:
     print('PostgreSQL database configured')
 
 
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -149,9 +139,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
@@ -162,18 +149,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'collected_static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -5,15 +5,36 @@
 
 
 ### Технологии
-asgiref==3.7.2
-Django==4.2.8
-django-ckeditor==6.7.0
-django-js-asset==2.1.0
-Pillow==10.1.0
-python-dotenv==1.0.0
-sqlparse==0.4.4
-typing_extensions==4.8.0
-tzdata==2023.3
+asgiref
+attrs
+Django
+django-ckeditor
+django-cors-headers
+django-filter
+django-js-asset
+djangorestframework
+drf-spectacular
+drf-spectacular-sidecar
+gunicorn
+importlib-metadata
+inflection
+jsonschema
+jsonschema-specifications
+Markdown
+packaging
+Pillow
+psycopg
+psycopg2
+python-dotenv
+pytz
+PyYAML
+referencing
+rpds-py
+sqlparse
+typing_extensions
+tzdata
+uritemplate
+zipp
 
 ### Запуск проекта в dev-режиме
 - Заполните файл .env
@@ -23,15 +44,20 @@ docker compose up
 ```
 
 ### Описание переменных окружения
+SECRET_KEY - криптографическая подпись Django
+DEBUG - статус режима дебаг
+LOCAL_DB - локальная БД или нет
+ALLOWED_HOSTS - разрешеные хосты
 POSTGRES_DB - название БД
 POSTGRES_USER - имя пользователя БД
 POSTGRES_PASSWORD - пароль пользователя БД
-DB_NAME - название БД
-DB_HOST - адрес БД
+DB_NAME= - название БД
+DB_HOST= - адрес БД
 DB_PORT - порт БД
-SECRET_KEY - криптографическая подпись Django
-DEBUG - статус режима дебаг
-
+#EMAIL_HOST = 'smtp.mail.ru'
+#EMAIL_PORT = 2525
+#EMAIL_HOST_USER - почта с которой отправляются сообщения
+#EMAIL_HOST_PASSWORD = пароль для отправки сообщений
 
 
 ### Авторы

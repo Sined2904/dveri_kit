@@ -18,8 +18,7 @@ from .filters import ProductFilter
 from dveri import settings
 
 
-EMAIL_TO = 'den2904@yandex.ru'
-EMAIL_TO_2 = 'dverikitnchk@mail.ru'
+EMAIL_SEND_TO = 'dverikitnchk@mail.ru'
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -70,10 +69,7 @@ class RequestForMeasurementViewSet(viewsets.ModelViewSet):
                    )
         send_mail(f"Новая заявка на замер от {request.data['name_surname']}!",
                   message, settings.EMAIL_HOST_USER,
-                  [EMAIL_TO])
-        send_mail(f"Новая заявка на замер от {request.data['name_surname']}!",
-                  message, settings.EMAIL_HOST_USER,
-                  [EMAIL_TO_2])
+                  [EMAIL_SEND_TO])
         return super().create(request, *args, **kwargs)
 
 
@@ -92,20 +88,5 @@ class RequestForCallbackViewSet(viewsets.ModelViewSet):
                    )
         send_mail(f"Запрос звонка от {request.data['name_surname']}!",
                   message, settings.EMAIL_HOST_USER,
-                  ['den2904@yandex.ru'])
-        send_mail(f"Запрос звонка от {request.data['name_surname']}!",
-                  message, settings.EMAIL_HOST_USER,
-                  ['dverikitnchk@mail.ru'])
+                  [EMAIL_SEND_TO])
         return super().create(request, *args, **kwargs)
-
-
-'''
-class RelatedProductViewSet(viewsets.ModelViewSet):
-    """Вьюсет для сопутствующих товаров."""
-
-    queryset = RelatedProduct.objects.all()
-    serializer_class = RelatedProductSerializer
-    permission_classes = (IsAdminOrReadOnly,)
-    pagination_class = None
-    http_method_names = ['get']
-'''
