@@ -1,6 +1,7 @@
 from django.db import models
 
 from ckeditor.fields import RichTextField
+from django.core.exceptions import ValidationError
 
 
 class SizeDoor(models.Model):
@@ -191,20 +192,22 @@ class ProductAlbum(models.Model):
 
     name = models.CharField(
         max_length=250,
-        null=False,
+        null=True,
         verbose_name='Название фото'
     )
     image = models.ImageField(
         upload_to="product/",
         verbose_name='Фото',
+        null=False,
+        blank=False
     )
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         related_name='album_product',
         verbose_name='Дверь',
-        blank=True,
-        null=True
+        blank=False,
+        null=False
     )
     time_create = models.DateTimeField(
         auto_now_add=True,
