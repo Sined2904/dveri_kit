@@ -1,7 +1,6 @@
 from django.db import models
 
 from ckeditor.fields import RichTextField
-from django.core.exceptions import ValidationError
 
 
 class SizeDoor(models.Model):

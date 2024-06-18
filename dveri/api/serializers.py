@@ -51,7 +51,10 @@ class ProductSerializer(serializers.ModelSerializer):
         productalbum = obj.album_product
         serializer = ProductAlbumSerializer(productalbum, many=True)
         if not serializer.data:
-            serializer = ProductAlbumSerializer(ProductAlbum(name = 'нет фото', image = '/product/logo192.png'))
+            serializer = ProductAlbumSerializer(ProductAlbum(
+                name='нет фото',
+                image='/product/logo192.png')
+            )
         return serializer.data
 
     class Meta:
