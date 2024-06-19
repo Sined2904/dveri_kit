@@ -50,11 +50,14 @@ class ProductSerializer(serializers.ModelSerializer):
     def get_productalbum(self, obj):
         productalbum = obj.album_product
         serializer = ProductAlbumSerializer(productalbum, many=True)
+        print(1)
         if not serializer.data:
+            print(2)
             serializer = ProductAlbumSerializer(ProductAlbum(
                 name='нет фото',
                 image='/product/logo192.png')
             )
+            print(serializer.data)
         return serializer.data
 
     class Meta:
