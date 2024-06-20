@@ -53,7 +53,7 @@ class ProductSerializer(serializers.ModelSerializer):
         if not serializer.data:
             serializer = ProductAlbumSerializer(ProductAlbum(
                 name='нет фото',
-                image='media/product/logo192.png')
+                image='product/logo192.png')
             )
         return [serializer.data]
 
