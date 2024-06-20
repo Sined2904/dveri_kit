@@ -3,8 +3,6 @@ from django.db.models import Max, Min
 
 from products.models import (Product, SizeDoor, Article, RequestForMeasurement,
                              ProductAlbum, RequestForCallback)
-from PIL import Image
-
 
 
 class ProductAlbumSerializer(serializers.ModelSerializer):
