@@ -55,7 +55,8 @@ class ProductSerializer(serializers.ModelSerializer):
                 name='нет фото',
                 image='product/logo192.png')
             )
-        return [serializer.data]
+            return [serializer.data]
+        return serializer.data
 
     class Meta:
         model = Product
