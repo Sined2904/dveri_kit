@@ -3,6 +3,8 @@ from django.db.models import Max, Min
 
 from products.models import (Product, SizeDoor, Article, RequestForMeasurement,
                              ProductAlbum, RequestForCallback)
+from PIL import Image
+
 
 
 class ProductAlbumSerializer(serializers.ModelSerializer):
@@ -50,15 +52,12 @@ class ProductSerializer(serializers.ModelSerializer):
     def get_productalbum(self, obj):
         productalbum = obj.album_product
         serializer = ProductAlbumSerializer(productalbum, many=True)
-        print(1)
         if not serializer.data:
-            print(2)
             serializer = ProductAlbumSerializer(ProductAlbum(
                 name='нет фото',
-                image='/product/logo192.png')
+                image='media/product/logo192.png')
             )
-            print(serializer.data)
-        return serializer.data
+        return [serializer.data]
 
     class Meta:
         model = Product
