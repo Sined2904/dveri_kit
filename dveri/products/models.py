@@ -61,6 +61,7 @@ class Product(models.Model):
         null=True
     )
     for_sale = models.BooleanField('Товар по акции')
+    new = models.BooleanField('Новинка')
     old_price = models.IntegerField(
         verbose_name='Цена товара БЕЗ акции',
         blank=True,
