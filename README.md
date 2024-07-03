@@ -43,20 +43,20 @@ docker compose up
 ```
 
 ### Описание переменных окружения
-SECRET_KEY - криптографическая подпись Django
-DEBUG - статус режима дебаг
-LOCAL_DB - локальная БД или нет
-ALLOWED_HOSTS - разрешеные хосты
-POSTGRES_DB - название БД
-POSTGRES_USER - имя пользователя БД
-POSTGRES_PASSWORD - пароль пользователя БД
-DB_NAME= - название БД
-DB_HOST= - адрес БД
-DB_PORT - порт БД
-#EMAIL_HOST = 'smtp.mail.ru'
-#EMAIL_PORT = 2525
-#EMAIL_HOST_USER - почта с которой отправляются сообщения
-#EMAIL_HOST_PASSWORD = пароль для отправки сообщений
+- SECRET_KEY - криптографическая подпись Django
+- DEBUG - статус режима дебаг
+- LOCAL_DB - локальная БД или нет
+- ALLOWED_HOSTS - разрешеные хосты
+- POSTGRES_DB - название БД
+- POSTGRES_USER - имя пользователя БД
+- POSTGRES_PASSWORD - пароль пользователя БД
+- DB_NAME= - название БД
+- DB_HOST= - адрес БД
+- DB_PORT - порт БД
+- #EMAIL_HOST = 'smtp.mail.ru'
+- #EMAIL_PORT = 2525
+- #EMAIL_HOST_USER - почта с которой отправляются сообщения
+- #EMAIL_HOST_PASSWORD = пароль для отправки сообщений
 
 
 
