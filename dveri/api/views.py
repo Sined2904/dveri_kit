@@ -18,7 +18,7 @@ from .filters import ProductFilter
 from dveri import settings
 
 
-EMAIL_SEND_TO = 'dverikitnchk@mail.ru'
+EMAIL_SEND_TO = 'dverioknaort@mail.ru'
 
 
 class ProductViewSet(viewsets.ModelViewSet):
