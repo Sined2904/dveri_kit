@@ -60,7 +60,6 @@ docker compose up
 
 ### Авторы
 Пиневич Денис
-
 - Github - Sined2904
 - Den2904@yandex.ru
 - TG - @PinevichD
